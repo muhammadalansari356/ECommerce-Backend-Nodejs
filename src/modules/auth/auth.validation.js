@@ -17,14 +17,14 @@ export const login = joi.object({
     password: generalFields.password
 }).required()
 
-export const sendCode = joi.object({
-    email: generalFields.email,
-}).required()
+// export const sendCode = joi.object({
+//     email: generalFields.email,
+// }).required()
 
 
-export const forgetPassword = joi.object({
-    forgetCode: joi.string().pattern(new RegExp(/^[0-9]{4}$/)).required(),
-    email: generalFields.email,
-    password: generalFields.password,
-    cPassword: generalFields.cPassword.valid(joi.ref('password')),
-}).required()
+// export const forgetPassword = joi.object({
+//     forgetCode: joi.string().pattern(new RegExp(/^[0-9]{4}$/)).required(),
+//     email: generalFields.email,
+//     password: generalFields.password,
+//     cPassword: generalFields.cPassword.valid(joi.ref('password')),
+// }).required()
