@@ -1,8 +1,7 @@
-import {roles} from '../../middleware/auth.js'
+import { roles } from "../../middleware/auth.js";
 
+export const endPoint = {
+  create : [roles.Admin],
+  update : [roles.Admin],
 
-export  const endpoint = {
-    create:[roles.Admin],
-    update:[roles.Admin],
-    wishlist:[roles.User]
 }
