@@ -1,26 +1,36 @@
-import { auth } from '../../middleware/auth.js';
+// review.router.js
+import * as reviewController from "../reviews/controller/review.js";
+import { endPoint } from "./reviews.endPoint.js";
 import { validation } from '../../middleware/validation.js';
-import * as validators from './reviews.validation.js'
-import { endpoint } from './reviews.endPoint.js'
-
-import * as reviewController from './controller/review.js'
+import * as validators from "./reviews.validation.js";
+import { auth } from "../../middleware/auth.js";
 import { Router } from "express";
-const router = Router({ mergeParams: true })
+const router = Router();
+
+router.get('/', 
+  auth(endPoint.getAllReviews),
+  reviewController.getAllReviews);
+
+  router.get('/product/:productId',
+    auth(endPoint.getReviewsByProduct),
+    validation(validators.getReviewsByProduct),
+    reviewController.getReviewsByProduct);
+  
+router.post('/', 
+  auth(endPoint.createReview),
+  validation(validators.createReview),
+  reviewController.createReview);
+
+router.put('/:reviewId', 
+  auth(endPoint.updateReview),
+  validation(validators.updateReview),
+  reviewController.updateReview);
+
+router.delete('/:reviewId', 
+  auth(endPoint.deleteReview),
+  validation(validators.deleteReview),
+  reviewController.deleteReview);
 
 
 
-
-router.post("/",
-    auth(endpoint.createReview),
-    validation(validators.createReview),
-    reviewController.createReview)
-
-router.put("/:reviewId",
-    auth(endpoint.updateReview),
-    validation(validators.updateReview),
-    reviewController.updateReview)
-
-
-
-
-export default router
+export default router;

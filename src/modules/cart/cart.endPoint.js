@@ -1,7 +1,9 @@
 import { roles } from "../../middleware/auth.js";
 
+export const endPoint = {
+  create : [roles.User],
+  getCart: [roles.User] 
 
 
-export const endpoint = {
-    create: [roles.User]
+
 }
